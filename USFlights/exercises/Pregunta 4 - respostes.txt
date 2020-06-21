@@ -1,0 +1,19 @@
+4. Tingues en compte:
+	a.	En quin ordre s’hauran d’importar les dades?
+
+		Les taules s'han d'importar en el següent ordre:
+		- Carriers
+		- USAiroports
+		- Flights
+
+	Les taules 'Carriers' o 'USAirports' poden ser importades en qualsevol ordre ja que no tenen "foreign keys" (FK) entre elles. Sí és important que la taula 'Flights' sí que sigui importada la última ja que enllaça amb les seves FK amb les altres dues taules i així evitem problemes d'importació. 
+
+	b.	Durant la importació de les dades de la taula 'flights', els camps de l’arxiu csv d’on s’importen estan ben correlacionats amb els camps de la taula? Per què creus que és això?
+
+	- No estan ben correlacionats. Els últims 6 camps no estan a la creació de l'estructura de la taula a "createUSFlightsSchema.sql".
+	- A l'arxiu de dades, "flights.csv", tampoc es troba el camp 'FlightID', però com que a l'estructura sí que està creat com a primary key (PK) i amb autoincrement, a la importació amb el wizard s'omple aquest camp automàticament.
+	
+	Per arreglar el problema hem de fer el següent dels últims 6 camps fem el següent:	
+	- He afegit els camps que ens falten amb l'script anomenat "AlterTable_To_Add_Fields_Flights.sql" utilitzant ALTER TABLE o els afegim directament a l'script "createUSFlightsSchema.sql" a continuació del camp 'Diverted' (línia 44). L'ús de la primera opció es fa si tenim creada l'estructura de la taula al nostre esquema previament, si no, hem de modificar el CREATE TABLE de l'SQL de creació.
+	- Seleccionem l'SQL de creació de la taula 'Flights' de l'arxiu "createUSFlightsSchema.sql" i l'executem per crear l'estructura corregida.
+	- Fem la importació de dades de l'arxiu "flights.csv" i ara funcionarà correctament.

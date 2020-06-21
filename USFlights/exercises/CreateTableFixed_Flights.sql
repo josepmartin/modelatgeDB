@@ -1,21 +1,3 @@
-DROP SCHEMA IF EXISTS USAirlineFlights2;
-CREATE DATABASE IF NOT EXISTS USAirlineFlights2;
-use USAirlineFlights2;
-
-CREATE TABLE USAirports (
-	IATA			VARCHAR(32) NOT NULL PRIMARY KEY,
-	Airport			VARCHAR(80),
-	City			VARCHAR(32),
-	State			VARCHAR(32),
-	Country			VARCHAR(32),
-	Latitude		FLOAT,
-	Longitude		FLOAT);
-    
-CREATE TABLE Carriers (
-	CarrierCode		VARCHAR(32) NOT NULL PRIMARY KEY,
-	Description		VARCHAR(120)
-);
-
 CREATE TABLE IF NOT EXISTS Flights(
 	flightID		INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	colYear			SMALLINT,
@@ -42,12 +24,12 @@ CREATE TABLE IF NOT EXISTS Flights(
 	Cancelled		BOOLEAN,
 	CancellationCode VARCHAR(32),
 	Diverted		BOOLEAN,
-	CarrierDelay	SMALLINT,			# Camp inexistent al fitxer inicial.
-	WeatherDelay	SMALLINT,			# Camp inexistent al fitxer inicial.
-	NASDelay		SMALLINT,			# Camp inexistent al fitxer inicial.
-	SecurityDelay	SMALLINT,			# Camp inexistent al fitxer inicial.
-	LateAircraftDelay	SMALLINT,		# Camp inexistent al fitxer inicial.
-
+	CarrierDelay	SMALLINT,
+	WeatherDelay	SMALLINT,
+	NASDelay		SMALLINT,
+	SecurityDelay	SMALLINT,
+	LateAircraftDelay	SMALLINT,
+	
     
     FOREIGN KEY (Dest)
 		REFERENCES USAirports (IATA),
